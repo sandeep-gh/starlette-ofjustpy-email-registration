@@ -1,0 +1,56 @@
+* code layout
+- models.py
+- views.py
+- routes.py
+- app_code_introspect.py
+
+* also needs a config file with
+models_pymodule
+user_model
+
+* test drive
+devel/td_email_registration.py
+
+- Bring your own model
+- Bring your own rendering
+
+* urls to endpoint mapping (mirroring //Django-Verify-Email/verify_email/urls.py)
+path(f'user/verify-email/<useremail>/<usertoken>/', verify_user_and_activate, name='verify-email')
+-
+
+* TODO use proper decrypt in verify_user_and_activate
+currently we are just decoding the email and then calling get_user_token.
+But django verify has more code in verify_user.
+
+
+
+
+    
+* The steps
+** DONE no websocket
+** DONE form and validation check (fold in pydantic)
+** DONE https
+** TODO csrf
+- alembic, sqlalchemy, validation   
+
+
+* The registration website flowchart and architecture
+**  visit registration page:
+*** arch:
+form submission; data input validation;
+** TODO generate verification link and send as email
+some token_manager stuff
+** user clicks on email
+*** arch
+lots of token_manager stuff to verify the token
+*** scenario 1: the user is verified
+**** user  is verified -- send to login page
+login page: XMLHTTPRequest to send a post request
+AuthBackend to verify it.
+redirect to user Homepage
+**** user is logged in: a cookie is stored.
+**** 
+
+
+   
+  
